@@ -52,4 +52,4 @@ async def save(ctx):
             await ctx.send("Файл успешно сохранён")
             await ctx.send(result)
 
-bot.run("MTIxMzQwNTc4MDE5MjAwNjE3NA.Gylf5W.FmYCuWAjScj8m8APlKLv6AbQWWX6M_x6fh6Wto")
+bot.run("")
