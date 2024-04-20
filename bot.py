@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
-import get_model
+import random
+import model
 
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='$', intents=intents)
+bot = commands.Bot(command_prefix='/', intents=intents)
 
 @bot.event
 async def on_ready():
@@ -13,11 +14,32 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
-    await ctx.send(f'Здравствуй, я {bot.user}.')
+    await ctx.send(f'Здравствуй, я {bot.user}!')
 
 @bot.command()
-async def heh(ctx, count_heh = 5):
-    await ctx.send("he" * count_heh)
+async def say(ctx):
+    say = ["Звезды сегодня особенно обварожительны...", "На борту сегодня прохладно. Не переживай, я решу эту проблему.", "Не забудь выполнить домашнее задание, которое тебе задал твой наставник!", "Эзреаль чем-то недоволен. Вы ведь не мешали ему во время исследований?..", "Любимое блюдо Кайна - жаренная картошка.", "Желаю тебе продуктивного дня!", "Оливер сказал, что ему нужна помощь с его новым проектом. Не составишь ему компанию?"]
+    await ctx.send(random.choice(say))
+
+@bot.command()
+async def facultet_pass(ctx):
+    facultet = ["Астрономия", "Инженерия", "Физика"]
+    await ctx.send(random.choice(facultet))
+    
+@bot.command()
+async def trash_pass(ctx):
+    trash = ["Пластиковые бутылки разлагаются более 100 лет", "Стекло разлагается более 1000 лет", "Пищевые отходы разлагаются за 2-4 недели", "Бумага разлагается 2 года "]
+    await ctx.send(random.choice(trash))
+
+@bot.command()
+async def globalno(ctx):
+    globalno = ["Что могут сделать обычные люди с глобальным потеплением? Разные эксперты предлагают различные варианты экологизации: пересесть с машин на велосипеды, перестать использовать одноразовую посуду, есть мясо и рожать. Последнее - не шутка. Ученые действительно считают, что сокращение деторождения может быть одной из действенных мер. Например, в Университете штата Орегон по итогам исследования выяснили, что каждый ребенок, рожденный в США, добавит к вредным выбросам в атмосферу 9,4 тонны. Однако без детей на планете в какой-то момент станет пусто, поэтому эксперты ООН по окружающей среде предлагают рожать дальше, но: меньше летать; сокращать отходы; изолировать свое жилище; передвигаться пешком или на велосипеде; есть сезонные продукты; отключать электроприборы; носить одежду до последнего; говорить об экологизации с друзьями и на работе; выбирать электротранспорт; переходить на возобновляемые источники энергии; использовать безналичную оплату; есть больше растительной пищи; ремонтировать вещи и давать им вторую жизнь.", "Глоба́льное потепле́ние — долгосрочное повышение средней температуры климатической системы Земли, происходящее уже более века, основной причиной чего, по мнению подавляющего большинства учёных, является человеческая деятельность."]
+    await ctx.send(random.choice(globalno))
+
+@bot.command()
+async def posled(ctx):
+    posled = ["Угроза сельскому хозяйству в тропиках и субтропиках (где растут цитрусовые и имбирь)", "Продолжится сокращение воды, а качество имеющейся будет ухудшаться в регионах, где население зависит от дождевой воды", "Увеличится смертность от малярии, лихорадки денге и других болезней в тропических и субтропических регионах", "Таяние ледников и, соответственно, подъем уровня моря, что приведет к затоплению прибрежных районов", "Леса окажутся под угрозой"]
+    await ctx.send(random.choice(posled))
 
 @bot.command()
 async def save(ctx):
@@ -26,8 +48,8 @@ async def save(ctx):
         for attachment in ctx.message.attachments:
             filename = attachment.filename
             await attachment.save(filename)
-            result = get_model.detect_object(filename)
+            result = model.detect_object(filename)
             await ctx.send("Файл успешно сохранён")
             await ctx.send(result)
 
-bot.run("MTIxMzQwNTc4MDE5MjAwNjE3NA.GAxF7P.IuRyKGoa1m_1kUsQiyUBOjuh3HC0y4KpgwsFSo")
+bot.run("MTIxMzQwNTc4MDE5MjAwNjE3NA.Gylf5W.FmYCuWAjScj8m8APlKLv6AbQWWX6M_x6fh6Wto")
